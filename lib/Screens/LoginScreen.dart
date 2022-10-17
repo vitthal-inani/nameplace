@@ -1,65 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:npatkeshav/Screens/JoinaRoom.dart';
+import 'package:nameplace/Sub%20Screens/NameValidation.dart';
 
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({Key? key}) : super(key: key);
-  final TextEditingController usernameController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Container(
-      child:  Column(
-
-        mainAxisAlignment: MainAxisAlignment.center,
+      padding: EdgeInsets.only(top: size.height * 0.1),
+      child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: size.width*0.6,
-                height: size.height*0.08,
-                decoration: BoxDecoration(border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(6)),
-                child: TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8) ,
-                    border: InputBorder.none,
-                    hintText: 'Create A Username',
-                  ),
-                ),
+          Column(
+            children: const [
+              Text(
+                "Name Place",
+                style: TextStyle(color: Colors.white),
               ),
-              ElevatedButton(style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                      horizontal: size.width*0.04)),
-                  onPressed: () {print(usernameController.value.text);},
-                  child: const Text("Next", style: TextStyle(fontSize: 24),)
+              Text(
+                "Animal Thing",
+                style: TextStyle(color: Colors.white),
               )
             ],
           ),
-          Container(
-            height: 200,
-            padding: EdgeInsets.symmetric(vertical: size.height*0.03),
-            child: Column(
-              verticalDirection: VerticalDirection.down,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                        horizontal: size.width*0.04)),
-                    onPressed: () {print(usernameController.value.text);},
-                    child: const Text("Create A Room", style: TextStyle(fontSize: 24),)
-                ),
-                ElevatedButton(style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                        horizontal: size.width*0.07)),
-                    onPressed: () {print(usernameController.value.text);},
-                    child: const Text("Join A Room", style: TextStyle(fontSize: 24),)
-                ),
-                Join()
-              ],
-            ),
-          ),
+          Padding(padding: EdgeInsets.only(bottom: size.height * 0.2)),
+          const NameValidation(),
         ],
       ),
     );
