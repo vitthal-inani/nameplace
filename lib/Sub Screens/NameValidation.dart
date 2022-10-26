@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:nameplace/Network/RoomUtils.dart';
+import 'package:nameplace/Providers/UserData.dart';
+import 'package:nameplace/Screens/RoomStartScreen.dart';
+import 'package:nameplace/Sub%20Screens/JoinDialog.dart';
+import 'package:provider/provider.dart';
 
-class NameValidation extends StatefulWidget {
-  const NameValidation({Key? key}) : super(key: key);
+class NameValidation extends StatelessWidget {
+  NameValidation({super.key});
 
-  @override
-  State<NameValidation> createState() => _NameValidationState();
-}
-
-class _NameValidationState extends State<NameValidation> {
-  late String name;
   final TextEditingController usernameController = TextEditingController();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    name = "";
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final UserData userData = Provider.of<UserData>(context);
     Size size = MediaQuery.of(context).size;
     return Container(
       height: size.height * 0.2,
@@ -27,8 +21,8 @@ class _NameValidationState extends State<NameValidation> {
       child: Row(
         children: [
           AnimatedSwitcher(
-            duration: const Duration(milliseconds: 1000),
-            child: (name.isEmpty)
+            duration: const Duration(milliseconds: 500),
+            child: (userData.name.isEmpty)
                 ? Column(
                     children: [
                       Container(
@@ -43,16 +37,19 @@ class _NameValidationState extends State<NameValidation> {
                             borderRadius: BorderRadius.circular(8)),
                         child: TextField(
                           controller: usernameController,
+                          maxLength: 10,
                           style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
                           decoration: const InputDecoration(
-                            contentPadding: EdgeInsets.only(top: 3, left: 10),
+                            counterText: '',
+                            contentPadding: EdgeInsets.only(top: 2, left: 10),
                             border: InputBorder.none,
                             hintStyle: TextStyle(
+                                fontFamily: 'Raleway',
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w700,
                                 fontSize: 20),
                             hintText: 'Create Username',
                           ),
@@ -69,9 +66,7 @@ class _NameValidationState extends State<NameValidation> {
                                 vertical: size.height * 0.015,
                                 horizontal: size.width * 0.04)),
                         onPressed: () {
-                          setState(() {
-                            name = usernameController.value.text;
-                          });
+                          userData.name = usernameController.value.text;
                         },
                         label: const Text(
                           "Next",
@@ -94,9 +89,7 @@ class _NameValidationState extends State<NameValidation> {
                               elevation: 20,
                             ),
                             onPressed: () {
-                              setState(() {
-                                name = "";
-                              });
+                              userData.name = "";
                             },
                             child: const Icon(
                               Icons.arrow_back_rounded,
@@ -107,9 +100,9 @@ class _NameValidationState extends State<NameValidation> {
                         Column(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(bottom: 20),
+                              margin: const EdgeInsets.only(bottom: 20),
                               child: Text(
-                                "Hi, $name",
+                                "Hi, ${userData.name}",
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -128,9 +121,12 @@ class _NameValidationState extends State<NameValidation> {
                                     horizontal: size.width * 0.04),
                               ),
                               onPressed: () {
-                                setState(() {
-                                  name = usernameController.value.text;
-                                });
+                                // RoomUtils.createRoom(context);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RoomStartScreen()));
                               },
                               child: const Text(
                                 "Create Room",
@@ -150,9 +146,11 @@ class _NameValidationState extends State<NameValidation> {
                                       vertical: size.height * 0.015,
                                       horizontal: size.width * 0.04)),
                               onPressed: () {
-                                setState(() {
-                                  name = usernameController.value.text;
-                                });
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const JoinDialog();
+                                    });
                               },
                               child: const Text(
                                 "Join Room",
