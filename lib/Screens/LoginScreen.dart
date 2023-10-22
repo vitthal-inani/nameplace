@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:npatkeshav/Screens/JoinaRoom.dart';
+import 'Screens/JoinaRoom.dart';
 
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({Key? key}) : super(key: key);
