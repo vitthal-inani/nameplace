@@ -264,7 +264,14 @@ class _GameScreenState extends State<GameScreen>
                         padding: EdgeInsets.symmetric(
                             vertical: size.height * 0.015,
                             horizontal: size.width * 0.04)),
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context){
+                            return Center(child: CircularProgressIndicator());
+                          },
+                      );
+                    },
                     icon: const Icon(Icons.arrow_forward),
                     label: const Text(
                       "Submit",
