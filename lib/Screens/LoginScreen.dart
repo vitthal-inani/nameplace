@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:npatkeshav/Screens/JoinaRoom.dart';
 
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({Key? key}) : super(key: key);
@@ -56,7 +55,6 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {print(usernameController.value.text);},
                     child: const Text("Join A Room", style: TextStyle(fontSize: 24),)
                 ),
-                Join()
               ],
             ),
           ),
