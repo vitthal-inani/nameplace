@@ -1,67 +1,50 @@
 import 'package:flutter/material.dart';
-import 'Screens/JoinaRoom.dart';
+
+import 'package:nameplace/Sub%20Screens/NameValidation.dart';
+import 'Screens/JoinaRoom.dart
 
 class LoginScreen extends StatelessWidget {
-  // const LoginScreen({Key? key}) : super(key: key);
-  final TextEditingController usernameController=TextEditingController();
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
-    return Container(
-      child:  Column(
-
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: size.width*0.6,
-                height: size.height*0.08,
-                decoration: BoxDecoration(border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(6)),
-                child: TextField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8) ,
-                    border: InputBorder.none,
-                    hintText: 'Create A Username',
-                  ),
-                ),
-              ),
-              ElevatedButton(style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                      horizontal: size.width*0.04)),
-                  onPressed: () {print(usernameController.value.text);},
-                  child: const Text("Next", style: TextStyle(fontSize: 24),)
-              )
-            ],
-          ),
-          Container(
-            height: 200,
-            padding: EdgeInsets.symmetric(vertical: size.height*0.03),
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        backgroundColor: const Color(0xff463F71),
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(top: size.height * 0.05),
             child: Column(
-              verticalDirection: VerticalDirection.down,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                        horizontal: size.width*0.04)),
-                    onPressed: () {print(usernameController.value.text);},
-                    child: const Text("Create A Room", style: TextStyle(fontSize: 24),)
-                ),
-                ElevatedButton(style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: size.height*0.02,
-                        horizontal: size.width*0.07)),
-                    onPressed: () {print(usernameController.value.text);},
-                    child: const Text("Join A Room", style: TextStyle(fontSize: 24),)
-                ),
-                Join()
+                SizedBox(
+                    height: size.height * 0.25,
+                    child: const Image(
+                        image: AssetImage('assets/mainScreen.png'))),
+                Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
+                NameValidation(),
+                // Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
+                Container(
+                  margin: EdgeInsets.only(top: size.height * 0.05),
+                  width: size.width * 0.8,
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "How to Start",
+                        style: TextStyle(color: Colors.grey, fontSize: 20),
+                      ),
+                      Text(
+                        "\ni. Enter a username and press Next\n\nii. a) If you would like your friends to join you, press Create Room and share the code with you friends\n\nii. b) If you have a code, press Join Room and enter the code ",
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
-        ],
-      ),
-    );
+        ));
   }
 }
