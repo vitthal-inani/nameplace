@@ -7,6 +7,9 @@ class RoomData extends ChangeNotifier {
   String get roomName => _roomName;
 
   int get playerCount => _playerCount;
+  List<String> _players = [];
+
+  List<String> get players => _players;
 
   set roomName(String room) {
     _roomName = room;
@@ -23,4 +26,6 @@ class RoomData extends ChangeNotifier {
     playerCount = (roomData['players'] ?? 0);
     notifyListeners();
   }
+
+  void setHost(String player) {}
 }

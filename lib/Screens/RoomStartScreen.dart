@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nameplace/Providers/RoomData.dart';
 import 'package:nameplace/Screens/GameScreen.dart';
+import 'package:nameplace/Screens/LobbyScreen.dart';
 import 'package:provider/provider.dart';
 
 class RoomStartScreen extends StatelessWidget {
@@ -115,7 +116,7 @@ class RoomStartScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GameScreen()));
+                              builder: (context) =>  LobbyScreen()));
                     },
                     child: Text("Start"))
               ],
