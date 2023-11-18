@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class RoomData extends ChangeNotifier {
   String _roomName = "";
   int _playerCount = 0;
+  String _host = '';
+  bool _showLobby = false;
+  List<String> _players = [];
+  bool hasRoomCreated = false;
+
 
   String get roomName => _roomName;
-
+  bool get showLobby => _showLobby;
+  String get host => _host;
   int get playerCount => _playerCount;
-  List<String> _players = [];
-
   List<String> get players => _players;
 
   set roomName(String room) {
@@ -21,11 +25,23 @@ class RoomData extends ChangeNotifier {
     notifyListeners();
   }
 
+  set host(String playerName) {
+    _host = playerName;
+    notifyListeners();
+  }
+
+
+  set showLobby(bool value) {
+    _showLobby = value;
+    notifyListeners();
+  }
+
   void populateRoom(Map<String, dynamic> roomData) {
     _roomName = roomData['roomId'];
     playerCount = (roomData['players'] ?? 0);
     notifyListeners();
   }
 
-  void setHost(String player) {}
+
+  void updatePlayersList() {}
 }

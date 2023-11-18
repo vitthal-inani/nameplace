@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<UserData>(create: (_) => UserData()),
         ChangeNotifierProvider<RoomData>(create: (_) => RoomData())
       ],
-      child: const MaterialApp(home: LoginScreen()),
+      child: MaterialApp(
+          theme: ThemeData(
+            primaryColor: Color(0xff463F71),
+          ),
+          home: LoginScreen()),
     );
   }
 }

@@ -8,41 +8,45 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: const Color(0xff463F71),
-        resizeToAvoidBottomInset: true,
-        body: SafeArea(
+      backgroundColor: const Color(0xff463F71),
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.only(top: size.height * 0.05),
             child: Column(
               children: [
                 SizedBox(
-                    height: size.height * 0.25,
-                    child: const Image(
-                        image: AssetImage('assets/mainScreen.png'))),
+                  height: size.height * 0.25,
+                  child: const Image(
+                    image: AssetImage('assets/mainScreen.png'),
+                  ),
+                ),
                 Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
                 NameValidation(),
-                // Padding(padding: EdgeInsets.only(bottom: size.height * 0.05)),
                 Container(
                   margin: EdgeInsets.only(top: size.height * 0.05),
                   width: size.width * 0.8,
                   alignment: Alignment.centerLeft,
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "How to Start",
                         style: TextStyle(color: Colors.grey, fontSize: 20),
                       ),
                       Text(
-                        "\ni. Enter a username and press Next\n\nii. a) If you would like your friends to join you, press Create Room and share the code with you friends\n\nii. b) If you have a code, press Join Room and enter the code ",
+                        "\ni. Enter a username and press Next\n\nii. a) If you would like your friends to join you, press Create Room and share the code with your friends\n\nii. b) If you have a code, press Join Room and enter the code ",
                         style: TextStyle(color: Colors.grey, fontSize: 16),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

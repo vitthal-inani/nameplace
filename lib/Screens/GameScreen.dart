@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:nameplace/Screens/LoginScreen.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);
@@ -198,7 +197,7 @@ class _GameScreenState extends State<GameScreen>
                             _controller.reset();
                             _controller.animateTo(1);
                           },
-                          child: Text("Start")),
+                          child: const Text("Start")),
                       Container(
                         margin: EdgeInsets.only(bottom: size.height * 0.02),
                         decoration: BoxDecoration(
@@ -280,18 +279,21 @@ class _GameScreenState extends State<GameScreen>
                           style: TextStyle(fontSize: 20),
                         ),
                       ),
-                      isLoading ? CircularProgressIndicator() : Container()
+                      isLoading
+                          ? const CircularProgressIndicator()
+                          : Container()
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          if (isLoading) Container(
-            height: 1000,
-            width: 1000,
-            color: Colors.white70,
-          ),
+          if (isLoading)
+            Container(
+              height: 1000,
+              width: 1000,
+              color: Colors.white70,
+            ),
         ],
       ),
     );

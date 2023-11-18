@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:nameplace/Providers/RoomData.dart';
@@ -7,12 +6,12 @@ import 'package:nameplace/Providers/UserData.dart';
 import 'package:provider/provider.dart';
 
 class RoomUtils {
-  static const String url = "http://localhost:8080/api/room/";
+  static const String url = "http://localhost:8080/rooms/";
 
   static Future<String> createRoom(BuildContext context) async {
     final UserData userData = Provider.of<UserData>(context, listen: false);
     final RoomData roomData = Provider.of<RoomData>(context, listen: false);
-    Response response = await post(Uri.parse("${url}create"),
+    Response response = await post(Uri.parse("${url}createNewRoom"),
         body: jsonEncode({"name": userData.name}));
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonRoom = jsonDecode(response.body);
