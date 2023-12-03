@@ -89,9 +89,9 @@ class _NameValidationState extends State<NameValidation> {
                         },
                         label: const Text(
                           "Next",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
-                        icon: const Icon(Icons.arrow_forward_rounded),
+                        icon: const Icon(Icons.arrow_forward_rounded,color: Colors.white),
                       ),
                     ],
                   )
@@ -114,6 +114,7 @@ class _NameValidationState extends State<NameValidation> {
                           },
                           child: const Icon(
                             Icons.arrow_back_rounded,
+                            color: Colors.white,
                             size: 28,
                           ),
                         ),
@@ -178,7 +179,7 @@ class _NameValidationState extends State<NameValidation> {
                                     ),
                                   Text(
                                     "Create Room",
-                                    style: TextStyle(fontSize: 18),
+                                    style: TextStyle(fontSize: 18,color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -208,7 +209,7 @@ class _NameValidationState extends State<NameValidation> {
                               },
                               child: const Text(
                                 "Join Room",
-                                style: TextStyle(fontSize: 18),
+                                style: TextStyle(fontSize: 18,color: Colors.white),
                               ),
                             ),
                           ],
