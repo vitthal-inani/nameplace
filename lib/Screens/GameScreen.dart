@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nameplace/Screens/LoginScreen.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({Key? key}) : super(key: key);

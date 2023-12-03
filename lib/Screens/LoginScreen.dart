@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:nameplace/Sub%20Screens/NameValidation.dart';
-import 'Screens/JoinaRoom.dart
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
