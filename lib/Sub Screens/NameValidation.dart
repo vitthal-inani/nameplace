@@ -91,7 +91,8 @@ class _NameValidationState extends State<NameValidation> {
                           "Next",
                           style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
-                        icon: const Icon(Icons.arrow_forward_rounded,color: Colors.white),
+                        icon: const Icon(Icons.arrow_forward_rounded,
+                            color: Colors.white),
                       ),
                     ],
                   )
@@ -151,8 +152,8 @@ class _NameValidationState extends State<NameValidation> {
                                   isLoading = true;
                                 });
 
-                                String isRoomCreated =
-                                    await RoomUtils.createRoom(context);
+                                String isRoomCreated = await RoomUtils.createRoom(context);
+                                print(isRoomCreated);
 
                                 if (isRoomCreated == "Success") {
                                   setState(() {
@@ -163,6 +164,15 @@ class _NameValidationState extends State<NameValidation> {
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           const RoomStartScreen(),
+                                    ),
+                                  );
+                                } else if (isRoomCreated != "Success") {
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Failed to load API"),
                                     ),
                                   );
                                 }
@@ -177,9 +187,10 @@ class _NameValidationState extends State<NameValidation> {
                                       height: size.width * 0.06,
                                       child: CircularProgressIndicator(),
                                     ),
-                                  Text(
+                                  const Text(
                                     "Create Room",
-                                    style: TextStyle(fontSize: 18,color: Colors.white),
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -209,7 +220,8 @@ class _NameValidationState extends State<NameValidation> {
                               },
                               child: const Text(
                                 "Join Room",
-                                style: TextStyle(fontSize: 18,color: Colors.white),
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white),
                               ),
                             ),
                           ],

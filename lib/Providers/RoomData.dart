@@ -37,7 +37,7 @@ class RoomData extends ChangeNotifier {
   }
 
   void populateRoom(Map<String, dynamic> roomData) {
-    _roomName = roomData['roomId'];
+    _roomName = roomData['id'];
     playerCount = (roomData['players'] ?? 0);
     notifyListeners();
   }

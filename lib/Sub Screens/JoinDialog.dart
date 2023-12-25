@@ -91,7 +91,7 @@ class _JoinDialogState extends State<JoinDialog> {
                 }
                 RoomUtils.joinRoom(context, roomNameController.value.text)
                     .then((value) {
-                  if (roomData.roomName != emptyRoom) {
+                  if (value == "Success") {
                     setState(() {
                       error = "";
                     });
@@ -108,7 +108,7 @@ class _JoinDialogState extends State<JoinDialog> {
               },
               child: const Text(
                 "Join Room",
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),
             (error.isNotEmpty)
