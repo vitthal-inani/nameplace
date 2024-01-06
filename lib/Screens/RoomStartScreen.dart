@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../Providers/UserData.dart';
 import '../Sub Screens/Lobby.dart';
 import 'GameScreen.dart';
+
 class RoomStartScreen extends StatelessWidget {
   const RoomStartScreen({Key? key}) : super(key: key);
 
@@ -67,23 +68,30 @@ class RoomStartScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context, false);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white)
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
         backgroundColor: const Color(0xff463F71),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
-              child: Column(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
                 children: [
                   const Text(
                     "ROOM NAME",
                     style: TextStyle(color: Colors.white, fontSize: 24),
                   ),
                   Container(
-                    width: size.width * 0.45,
+                    width: size.width * 0.55,
                     height: size.height * 0.08,
                     margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
                     padding: EdgeInsets.symmetric(
@@ -98,7 +106,7 @@ class RoomStartScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'room',
+                          roomData.roomName,
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -118,7 +126,7 @@ class RoomStartScreen extends StatelessWidget {
                             Icons.copy,
                             color: Colors.white,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -130,25 +138,26 @@ class RoomStartScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.02),
                   LobbyScreen(),
-                  SizedBox(height: 15),
-                  PrimaryButton(
-                    text: "Start Room",
-                    onPress: () {
-                      // Update room host and navigate to the game screen
-                      roomData.host = userData.name;
-                      Provider.of<RoomData>(context, listen: false)
-                          .updatePlayersList();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => GameScreen()),
-                      );
-                    },
-                  ),
                 ],
               ),
-            ),
+              Container(
+                width: 350,
+                child: PrimaryButton(
+                  text: "Start Room",
+                  onPress: () {
+                    roomData.host = userData.name;
+                    Provider.of<RoomData>(context, listen: false)
+                        .updatePlayersList();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GameScreen()),
+                    );
+                  }, // Set your desired green color
+                ),
+              ),
+              const SizedBox(height: 15)
+            ],
           ),
         ),
       ),

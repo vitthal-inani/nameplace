@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nameplace/Network/WebSocket.dart';
 import 'package:nameplace/Providers/RoomData.dart';
 import 'package:nameplace/Providers/UserData.dart';
 import 'package:nameplace/Screens/LoginScreen.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Pusher.intialisePusher();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserData>(create: (_) => UserData()),

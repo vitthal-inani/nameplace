@@ -20,7 +20,7 @@ class LobbyScreen extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Players in the Room',
+                  'PLAYERS: ${roomData.playerCount}',
                   style: GoogleFonts.openSans(
                     fontSize: 24,
                     color: Colors.white,
@@ -28,24 +28,47 @@ class LobbyScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 15),
-                Text(
-                  'Host : ${roomData.host}',
-                  style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Rale way'),
-                ),
-                Text(
-                  'Other Players : ${roomData.players.where((player) => player != roomData.host).join(', ')}',
-                  style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Raleway'),
-                ),
-                SizedBox(height: 25),
+                const SizedBox(height: 10),
+                Container(
+                  height: 425,
+                  child: ListView.builder(
+                    itemCount: roomData.playerCount,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.white),
+                        ),
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                roomData.players[index]['playerName'],
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'Raleway'),
+                              ),
+                              Text(
+                                index == 0 ? "HOST    " : "JOINED ",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontFamily: 'Raleway'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
               ],
             ),
           ],

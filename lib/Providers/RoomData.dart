@@ -5,15 +5,14 @@ class RoomData extends ChangeNotifier {
   int _playerCount = 0;
   String _host = '';
   bool _showLobby = false;
-  List<String> _players = [];
+  List _players = [];
   bool hasRoomCreated = false;
-
 
   String get roomName => _roomName;
   bool get showLobby => _showLobby;
   String get host => _host;
   int get playerCount => _playerCount;
-  List<String> get players => _players;
+  List get players => _players;
 
   set roomName(String room) {
     _roomName = room;
@@ -38,7 +37,8 @@ class RoomData extends ChangeNotifier {
 
   void populateRoom(Map<String, dynamic> roomData) {
     _roomName = roomData['id'];
-    playerCount = (roomData['players'] ?? 0);
+    _players = roomData['playerData'];
+    playerCount = (roomData['players']);
     notifyListeners();
   }
 

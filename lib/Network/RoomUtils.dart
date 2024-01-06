@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'WebSocket.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:nameplace/Providers/RoomData.dart';
@@ -6,20 +7,16 @@ import 'package:nameplace/Providers/UserData.dart';
 import 'package:provider/provider.dart';
 
 class RoomUtils {
-  static const String baseUrl = "http://10.10.50.69:8080/rooms/";
+  static const String baseUrl = "http://192.168.1.106:8080/rooms/";
 
   static Future<String> createRoom(BuildContext context) async {
     try {
       final UserData userData = Provider.of<UserData>(context, listen: false);
       final RoomData roomData = Provider.of<RoomData>(context, listen: false);
-
-      print(userData.name);
       Response response = await post(Uri.parse("${baseUrl}createNewRoom"),
           body: jsonEncode({"name": userData.name}),
           headers: {'Content-type': 'application/json'}
       );
-
-
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonRoom = jsonDecode(response.body);
         print(jsonRoom);
@@ -50,6 +47,7 @@ class RoomUtils {
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonRoom = jsonDecode(response.body);
         roomData.populateRoom(jsonRoom);
+        Pusher.joinChannel(roomName,context);
         return "Success";
       } else {
         final Map<String, dynamic> errorResponse = jsonDecode(response.body);
@@ -61,6 +59,5 @@ class RoomUtils {
       return "Network Error";
     }
   }
-
 }
 
