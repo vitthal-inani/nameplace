@@ -56,7 +56,7 @@ class LobbyScreen extends StatelessWidget {
                               ),
                               Text(
                                 index == 0 ? "HOST    " : "JOINED ",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,

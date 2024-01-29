@@ -83,9 +83,11 @@ class _NameValidationState extends State<NameValidation> {
                           ),
                         ),
                         onPressed: () {
-                          setState(() {
-                            userData.name = usernameController.value.text;
-                          });
+                          setState(
+                            () {
+                              userData.name = usernameController.value.text;
+                            },
+                          );
                         },
                         label: const Text(
                           "Next",
@@ -109,9 +111,11 @@ class _NameValidationState extends State<NameValidation> {
                             elevation: 20,
                           ),
                           onPressed: () {
-                            setState(() {
-                              userData.name = "";
-                            });
+                            setState(
+                              () {
+                                userData.name = "";
+                              },
+                            );
                           },
                           child: const Icon(
                             Icons.arrow_back_rounded,
@@ -148,16 +152,21 @@ class _NameValidationState extends State<NameValidation> {
                                 ),
                               ),
                               onPressed: () async {
-                                setState(() {
-                                  isLoading = true;
-                                });
+                                setState(
+                                  () {
+                                    isLoading = true;
+                                  },
+                                );
 
-                                String isRoomCreated = await RoomUtils.createRoom(context);
-                                print(isRoomCreated);
+                                String isRoomCreated =
+                                    await RoomUtils.createRoom(context);
+                                print("Creation of room : {$isRoomCreated}");
 
                                 if (isRoomCreated == "Success") {
                                   setState(() {
                                     isLoading = false;
+                                    roomData.host = userData.name;
+                                    roomData.isHost = true;
                                   });
                                   Navigator.push(
                                     context,
@@ -167,9 +176,11 @@ class _NameValidationState extends State<NameValidation> {
                                     ),
                                   );
                                 } else if (isRoomCreated != "Success") {
-                                  setState(() {
-                                    isLoading = false;
-                                  });
+                                  setState(
+                                    () {
+                                      isLoading = false;
+                                    },
+                                  );
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text("Failed to load API"),
@@ -229,7 +240,7 @@ class _NameValidationState extends State<NameValidation> {
                       ],
                     ),
                   ),
-          ),
+            ),
         ],
       ),
     );

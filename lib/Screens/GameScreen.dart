@@ -1,16 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatefulWidget {
+
   const GameScreen({Key? key}) : super(key: key);
 
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen>
-    with SingleTickerProviderStateMixin {
+class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   String timer = "0";
+
   bool isLoading = false;
   final formKey = GlobalKey<FormState>();
 
@@ -18,6 +21,7 @@ class _GameScreenState extends State<GameScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 4000));
     _controller.value = 0;
@@ -276,7 +280,7 @@ class _GameScreenState extends State<GameScreen>
                         icon: const Icon(Icons.arrow_forward),
                         label: const Text(
                           "Submit",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
                       isLoading

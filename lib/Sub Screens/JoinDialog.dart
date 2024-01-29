@@ -5,7 +5,9 @@ import 'package:nameplace/Providers/RoomData.dart';
 import 'package:nameplace/Screens/RoomStartScreen.dart';
 import 'package:provider/provider.dart';
 
+import '../Screens/GameScreen.dart';
 import '../constants/NetworkConstants.dart';
+import '../constants/RoomConstants.dart';
 
 class JoinDialog extends StatefulWidget {
   const JoinDialog({super.key});
@@ -33,7 +35,7 @@ class _JoinDialogState extends State<JoinDialog> {
       backgroundColor: const Color(0xff463F71),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Container(
-        height: error.isNotEmpty ? size.height * 0.36 : size.height * 0.32,
+        height: error.isNotEmpty ? size.height * 0.39 : size.height * 0.32,
         width: size.width * 0.37,
         padding: EdgeInsets.symmetric(
             vertical: size.height * 0.05, horizontal: size.width * 0.01),
@@ -95,10 +97,22 @@ class _JoinDialogState extends State<JoinDialog> {
                     setState(() {
                       error = "";
                     });
-                    Navigator.push(
+
+                    if (roomData.roomState == ROOM_STATE.ROOM_CREATED) {
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RoomStartScreen()));
+                          builder: (context) => RoomStartScreen(),
+                        ),
+                      );
+                    } else if (roomData.roomState == ROOM_STATE.GAME_STARTED) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GameScreen(),
+                        ),
+                      );
+                    }
                   } else {
                     setState(() {
                       error = emptyRoom;

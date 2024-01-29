@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nameplace/Components/PrimaryButton.dart';
 import 'package:nameplace/Providers/RoomData.dart';
 import 'package:provider/provider.dart';
+import 'package:pusher_channels_flutter/pusher_channels_flutter.dart';
+import '../Network/RoomUtils.dart';
 import '../Providers/UserData.dart';
 import '../Sub Screens/Lobby.dart';
 import 'GameScreen.dart';
@@ -15,6 +18,7 @@ class RoomStartScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     RoomData roomData = Provider.of<RoomData>(context);
     UserData userData = Provider.of<UserData>(context);
+    PusherChannelsFlutter pusherInstance = PusherChannelsFlutter.getInstance();
 
     return WillPopScope(
       onWillPop: () async {
@@ -69,13 +73,10 @@ class RoomStartScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: (){
-              Navigator.pop(context, false);
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white)
-          ),
+              onPressed: () {
+                Navigator.pop(context, false);
+              },
+              icon: const Icon(Icons.arrow_back, color: Colors.white)),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -107,9 +108,10 @@ class RoomStartScreen extends StatelessWidget {
                       children: [
                         Text(
                           roomData.roomName,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: GoogleFonts.openSans(
                             fontSize: 24,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         IconButton(
@@ -141,21 +143,16 @@ class RoomStartScreen extends StatelessWidget {
                   LobbyScreen(),
                 ],
               ),
-              Container(
-                width: 350,
-                child: PrimaryButton(
-                  text: "Start Room",
-                  onPress: () {
-                    roomData.host = userData.name;
-                    Provider.of<RoomData>(context, listen: false)
-                        .updatePlayersList();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => GameScreen()),
-                    );
-                  }, // Set your desired green color
+              if (roomData.isHost)
+                SizedBox(
+                  width: 350,
+                  child: PrimaryButton(
+                    text: "Start Room",
+                    onPress: () async {
+                      print(await RoomUtils.startRoom(context,roomData.roomName));
+                    },
+                  ),
                 ),
-              ),
               const SizedBox(height: 15)
             ],
           ),
