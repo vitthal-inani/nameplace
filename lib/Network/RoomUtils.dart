@@ -8,7 +8,7 @@ import 'package:nameplace/Providers/UserData.dart';
 import 'package:provider/provider.dart';
 
 class RoomUtils {
-  static const String baseUrl = "http://192.168.1.105:8080/rooms/";
+  static const String baseUrl = "http://192.168.1.108:8080/rooms/";
 
   static Future<String> createRoom(BuildContext context) async {
     try {

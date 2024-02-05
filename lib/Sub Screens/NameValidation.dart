@@ -165,7 +165,6 @@ class _NameValidationState extends State<NameValidation> {
                                 if (isRoomCreated == "Success") {
                                   setState(() {
                                     isLoading = false;
-                                    roomData.host = userData.name;
                                     roomData.isHost = true;
                                   });
                                   Navigator.push(

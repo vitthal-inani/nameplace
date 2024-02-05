@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -127,7 +126,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                           );
                         });
                   },
-                  icon: const Icon(Icons.close)),
+                  icon: const Icon(Icons.close,color: Colors.white,)),
             ),
             backgroundColor: const Color(0xff463F71),
             body: SafeArea(
@@ -277,7 +276,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
                             isLoading = true;
                           });
                         },
-                        icon: const Icon(Icons.arrow_forward),
+                        icon: const Icon(Icons.arrow_forward,color: Colors.white),
                         label: const Text(
                           "Submit",
                           style: TextStyle(color: Colors.white, fontSize: 20),

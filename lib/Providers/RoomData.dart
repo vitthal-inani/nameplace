@@ -4,7 +4,6 @@ import 'package:nameplace/constants/RoomConstants.dart';
 class RoomData extends ChangeNotifier {
   String _roomName = "";
   int _playerCount = 0;
-  String _host = '';
   bool _showLobby = false;
   List _players = [];
   bool _isHost = false;
@@ -13,7 +12,6 @@ class RoomData extends ChangeNotifier {
 
   String get roomName => _roomName;
   bool get showLobby => _showLobby;
-  String get host => _host;
   int get playerCount => _playerCount;
   List get players => _players;
   bool get isHost => _isHost;
@@ -32,11 +30,6 @@ class RoomData extends ChangeNotifier {
 
   set playerCount(int players) {
     _playerCount = players;
-    notifyListeners();
-  }
-
-  set host(String playerName) {
-    _host = playerName;
     notifyListeners();
   }
 
